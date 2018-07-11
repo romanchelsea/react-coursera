@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Media} from 'reactstrap';
 import {
   Card,
   CardImg,
@@ -16,6 +15,8 @@ class Menu extends Component {
     this.state = {
       selectedDish: null
     }
+
+    console.log("Menu Component constructor is invoked");
   }
 
   onDishSelect(dish) {
@@ -44,7 +45,13 @@ class Menu extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log("Menu Component componentDidMount() is invoked");
+  }
+
   render() {
+    console.log("Menu Component render() is invoked");
+
     const menu = this.props.dishes.map((dish) => {
       return (<div key={dish.id} className="col-12 col-md-5 m-1">
         <Card onClick={() => this.onDishSelect(dish)}>
