@@ -32,12 +32,10 @@ class DishDetail extends Component {
     }
 
     const commentList = comments.map((comment) => {
-      const dateArr = new Date(comment.date).toDateString().split(' ');
-
       return (
         <li key={comment.id}>
           <p>{comment.comment}</p>
-          <p>-- {comment.author} , {dateArr[1]} {dateArr[2]}, {dateArr[3]}</p>
+          <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(comment.date))}</p>
         </li>
       );
     });
@@ -61,15 +59,17 @@ class DishDetail extends Component {
     }
 
     return (
-       <div className="row">
-         <div className="col-12 col-md-5 m-1">
-           {this.renderDish(dish)}
-         </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-md-5 m-1">
+             {this.renderDish(dish)}
+           </div>
 
-         <div className="col-12 col-md-5 m-1">
-           {this.renderComments(dish.comments)}
-         </div>
-       </div>
+           <div className="col-12 col-md-5 m-1">
+             {this.renderComments(dish.comments)}
+           </div>
+        </div>
+      </div>
     );
   }
 }
